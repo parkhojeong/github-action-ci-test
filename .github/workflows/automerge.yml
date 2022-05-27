@@ -1,31 +1,17 @@
-name: automerge
+name: autoupdate
 on:
-  pull_request:
-    types:
-      - labeled
-      - unlabeled
-      - synchronize
-      - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
-  pull_request_review:
-    types:
-      - submitted
-  check_suite:
-    types:
-      - completed
-  status: {}
+  # This will trigger on all pushes to all branches.
+  push: {}
+  # Alternatively, you can only trigger if commits are pushed to certain branches, e.g.:
+  # push:
+  #   branches:
+  #     - master
+  #     - unstable
 jobs:
-  automerge:
-    runs-on: ubuntu-latest
+  autoupdate:
+    name: autoupdate
+    runs-on: ubuntu-20.04
     steps:
-      - id: automerge
-        name: automerge
-        uses: "pascalgn/automerge-action@v0.15.3"
+      - uses: docker://chinthakagodawita/autoupdate-action:v1
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
-      - run: |
-          ls ${{ github.workspace }}
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'

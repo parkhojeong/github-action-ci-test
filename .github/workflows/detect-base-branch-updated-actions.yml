@@ -1,7 +1,9 @@
 name: detect-base-branch-updated
 on:
-  pull_request_target:
-    types: [synchronize, reopened]
+  pull_request:
+    types: [ opened, synchronize, edited, reopened ]
+    branches:
+      - develop
 
 jobs:
   Merge-develop:

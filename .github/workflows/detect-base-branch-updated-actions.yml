@@ -1,0 +1,12 @@
+name: detect-base-branch-updated
+on:
+  pull_request:
+    types: [ opened, synchronize, edited, reopened ]
+    branches:
+      - develop
+
+jobs:
+  Merge-develop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."

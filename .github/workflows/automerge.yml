@@ -26,3 +26,6 @@ jobs:
         uses: "pascalgn/automerge-action@v0.15.3"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: List files in the repository
+          run: |
+            ls ${{ github.workspace }}
